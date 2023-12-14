@@ -8,6 +8,6 @@ cd ..
 
 mkdir -p db wordpress
 
-git submodule init
+git submodule update --init
 
 docker compose build

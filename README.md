@@ -14,6 +14,17 @@ Some files to get you started working on the WLO Wordpress instance.
     cd wirlernenonline-theme
     git reset --hard HEAD
    ```
+7. In `wirlernenonline-theme/functions.php`, comment out the last line
+   ```php
+   require_once(get_template_directory().'/functions/users.php');
+   ```
+8. Log into your local Wordpress at http://localhost:8080 with the credentials from the imported instance
+    1. Go to *Settings* / *Permalinks*
+    2. Set to "Einfach"
+    3. Save
+    4. Set to "Beitragsname"
+    5. Save
+
 
 [1]: https://wordpress.org/plugins/all-in-one-wp-migration/
 
