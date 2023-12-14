@@ -6,7 +6,7 @@ set -e
 cd -- "$( dirname -- "${BASH_SOURCE[0]}" )"
 cd ..
 
-mkdir -p db wordpress
+mkdir -p db wordpress/wp-content/themes/wir-lernen-online
 
 git submodule update --init
 
