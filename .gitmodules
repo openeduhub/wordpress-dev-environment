@@ -1,0 +1,3 @@
+[submodule "wirlernenonline-theme"]
+	path = wirlernenonline-theme
+	url = https://github.com/openeduhub/wirlernenonline-theme.git

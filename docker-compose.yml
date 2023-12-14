@@ -1,0 +1,57 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    build: .
+    user: 1000:1000
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+
+      # XDEBUG_CONFIG: client_host=192.168.178.118
+      WORDPRESS_DEBUG: 1
+
+      #   /* development parameters */
+      #   define('WP_CACHE', false);
+      #   define('ENVIRONMENT', 'local');
+
+      #   /* do not re-define WP_DEBUG here or it will throw a blank error in the admin */
+      #   /* you can remove this entirely, this is just to show you what not to do */
+      #   // define('WP_DEBUG', true);
+
+      #   if (!defined('WP_HOME')) {
+      #     /* force our home url */
+      #     define('WP_HOME', 'http://localhost:8080');
+      #     define('WP_SITEURL', WP_HOME);
+      #   }
+
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'WP_REDIS_HOST', 'redis' );
+        define( 'WP_REDIS_PORT', 6379 );
+
+      #   define( 'WP_MAX_MEMORY_LIMIT' , '512M' );
+    volumes:
+      - ./wordpress:/var/www/html
+      - ./wirlernenonline-theme:/var/www/html/wp-content/themes/wir-lernen-online
+
+  db:
+    image: mysql:5.7
+    user: 1000:1000
+    restart: always
+    # command: --max_allowed_packet=32505856
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - ./db:/var/lib/mysql
+  redis:
+    image: redis
+    restart: always

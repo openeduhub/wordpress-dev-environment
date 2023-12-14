@@ -1,0 +1,4 @@
+/db
+/wordpress
+/backup/*
+!/backup/.gitkeep
